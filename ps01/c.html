@@ -1,54 +1,67 @@
-/**
- * @author hughes
- */
+<!DOCTYPE html>
 
-THREE.CircleGeometry = function ( radius, segments, thetaStart, thetaLength ) {
+<html>
 
-    THREE.Geometry.call( this );
+<head>
 
-    radius = radius || 50;
+<style>
 
-    thetaStart = thetaStart !== undefined ? thetaStart : 0;
-    thetaLength = thetaLength !== undefined ? thetaLength : Math.PI * 2;
-    segments = segments !== undefined ? Math.max( 3, segments ) : 8;
+                               .circle {
 
-    var i, uvs = [],
-    center = new THREE.Vector3(), centerUV = new THREE.Vector2( 0.5, 0.5 );
+                                               border-radius: 50%;
 
-    this.vertices.push(center);
-    uvs.push( centerUV );
+                                               display: inline-block;
 
-    for ( i = 0; i <= segments; i ++ ) {
+                                               margin-right: 20px;
 
-        var vertex = new THREE.Vector3();
-        var segment = thetaStart + i / segments * thetaLength;
+                               }
 
-        vertex.x = radius * Math.cos( segment );
-        vertex.y = radius * Math.sin( segment );
+                               #element1 {
 
-        this.vertices.push( vertex );
-        uvs.push( new THREE.Vector2( ( vertex.x / radius + 1 ) / 2, ( vertex.y / radius + 1 ) / 2 ) );
+                                               width: 200px;
 
-    }
+                                               height: 200px;
 
-    var n = new THREE.Vector3( 0, 0, 1 );
+                                               background: green;
 
-    for ( i = 1; i <= segments; i ++ ) {
+                               }
 
-        var v1 = i;
-        var v2 = i + 1 ;
-        var v3 = 0;
+                               #element2 {
 
-        this.faces.push( new THREE.Face3( v1, v2, v3, [ n, n, n ] ) );
-        this.faceVertexUvs[ 0 ].push( [ uvs[ i ], uvs[ i + 1 ], centerUV ] );
+                                               width: 125px;
 
-    }
+                                               height: 125px;
 
-    this.computeCentroids();
-    this.computeFaceNormals();
+                                               background: red;
 
-    this.boundingSphere = new THREE.Sphere( new THREE.Vector3(), radius );
+                        }
 
-};
+                               #element3 {
 
-THREE.CircleGeometry.prototype = Object.create( THREE.Geometry.prototype );
+                                               width: 100px;
+
+                                               height: 100px;
+
+                                               background: blue;
+
+                                               position: relative;
+
+                               }
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Basic Circles</h2>
+
+<div id=”element1″></div>
+
+<div id=”element2″></div>
+
+<div id=”element3″></div>
+
+</body>
+
+</html>
